@@ -80,12 +80,12 @@ def run_audit():
         row = score_account(username)
         results.append(row)
 
-with open(tmp_csv_path, "r") as f:
-    reader = csv.reader(f)
-    next(reader)
-    results = list(reader)
-    if not results:
-        return []
+    with open(tmp_csv_path, "r") as f:
+        reader = csv.reader(f)
+        next(reader)
+        results = list(reader)
+        if not results:
+            return []
     if not results:
         print("\n⚠️  No follower data retrieved. Exiting audit.")
         return
