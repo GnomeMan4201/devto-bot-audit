@@ -185,3 +185,39 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+# --- Bot Detection Summary Logic ---
+import csv
+
+def summarize_bot_stats(filename="devto_bot_audit_full.csv"):
+    try:
+        with open(filename, newline='') as csvfile:
+            reader = csv.DictReader(csvfile)
+            total = bots = 0
+            for row in reader:
+                total += 1
+                if 'Suspicious username' in row.get('notes', '') or int(row.get('heuristic_score', 0)) >= 3:
+                    bots += 1
+            percent = (bots / total) * 100 if total else 0
+            print("\n🔎 Bot Detection Summary")
+            print("-----------------------")
+            print(f"Total accounts analyzed: {total}")
+            print(f"Flagged as likely bots : {bots}")
+            print(f"Percentage              : {percent:.2f}%\n")
+    except Exception as e:
+        print(f"[!] Error while summarizing: {e}")
+
+# --- Append to CLI ---
+if __name__ == "__main__":
+    import argparse
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--api-key', help="Your DEV API key")
+    parser.add_argument('--summary', action='store_true', help="Show bot detection summary after audit")
+    args = parser.parse_args()
+
+    if args.api_key:
+        # Your existing audit logic here (assuming it creates devto_bot_audit_full.csv)
+        pass  # Replace with actual call like: run_audit(args.api_key)
+
+    if args.summary:
+        summarize_bot_stats()
