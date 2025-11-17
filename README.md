@@ -45,3 +45,52 @@ No authentication, scraping libraries, or complex setup needed — just Python a
 git clone https://github.com/GnomeMan4201/devto-bot-audit.git
 cd devto-bot-audit
 pip install -r requirements.txt
+
+---
+
+## Example Output
+
+After running:
+
+```bash
+python3 devto_bot_audit_api.py --api-key YOUR_API_KEY
+
+You'll get a CSV like this:
+username	profile_score	post_count	flags
+cooldev123	0.98	4	None
+user8976	0.02	0	No posts, no bio
+Contributing
+
+If you spot false positives or want to suggest features, open an issue or submit a PR. Community eyes help strengthen this project.
+Contact
+
+This tool was developed by GnomeMan4201
+
+.
+Initial concerns were shared privately with the Dev.to team before this public release.
+
+
+---
+## Example Output
+
+After running:
+```bash
+python3 devto_bot_audit_api.py --api-key YOUR_API_KEY
+```
+
+You'll get a CSV like this:
+```
+username        profile_score   post_count      flags
+cooldev123      0.98            4               None
+user8976        0.02            0               No posts, no bio
+```
+
+## Contributing
+
+If you spot false positives or want to suggest features, open an issue or submit a PR. Community eyes help strengthen this project.
+
+## Contact
+
+This tool was developed by **GnomeMan4201**.
+
+Initial concerns were shared privately with the Dev.to team before this public release.
