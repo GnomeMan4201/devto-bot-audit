@@ -81,6 +81,11 @@ def run_audit():
         results.append(row)
 
     with open("devto_bot_audit_full.csv", "w", newline='') as f:
+    # Safety check for empty results
+    if not results:
+        print("\n⚠️  No follower data retrieved. Exiting audit.")
+        return
+
         writer = csv.DictWriter(f, fieldnames=list(results[0].keys()))
         writer.writeheader()
         writer.writerows(results)
