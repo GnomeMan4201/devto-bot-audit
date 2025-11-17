@@ -86,6 +86,10 @@ def run_audit():
         print("\n⚠️  No follower data retrieved. Exiting audit.")
         return
 
+    if not results:
+        print("\n⚠️ No data. Exiting.")
+        return
+
         writer = csv.DictWriter(f, fieldnames=list(results[0].keys()))
         writer.writeheader()
         writer.writerows(results)
