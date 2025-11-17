@@ -107,3 +107,5 @@ That’s approximately **43.08%** of the follower base.
 
 This tool helps highlight the scale of inauthentic follow activity and offers visibility into community integrity.
 
+
+![Bot Score](https://img.shields.io/badge/Bot%20Integrity-43.13%%25%20bots-red)
