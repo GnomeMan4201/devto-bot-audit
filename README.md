@@ -1,4 +1,4 @@
-# 🔎 devto-bot-audit
+#  devto-bot-audit
 
 > **An AI-augmented CLI tool for auditing suspicious Dev.to follower activity.**  
 Built by [@GnomeMan4201](https://dev.to/gnomeman4201) to surface patterns of automated engagement, filter out low-quality bots, and protect signal for legitimate developers and researchers.
