@@ -1,4 +1,10 @@
-#  devto-bot-audit
+# 🔎 devto-bot-audit
+![Python](https://img.shields.io/badge/python-3.10+-blue)
+
+![License](https://img.shields.io/badge/license-MIT-green)
+
+![Dev.to](https://img.shields.io/badge/dev.to-gnomeman4201-black?logo=dev.to)
+
 
 > **An AI-augmented CLI tool for auditing suspicious Dev.to follower activity.**  
 Built by [@GnomeMan4201](https://dev.to/gnomeman4201) to surface patterns of automated engagement, filter out low-quality bots, and protect signal for legitimate developers and researchers.
