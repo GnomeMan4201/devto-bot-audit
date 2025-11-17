@@ -94,3 +94,16 @@ If you spot false positives or want to suggest features, open an issue or submit
 This tool was developed by **GnomeMan4201**.
 
 Initial concerns were shared privately with the Dev.to team before this public release.
+
+---
+
+## Bot Detection Summary
+
+From a sample of **260** followers, **112** were flagged as likely bots based on multiple heuristics:
+- Suspicious usernames
+- Heuristic score ≥ 3 (multiple weak signals combined)
+
+That’s approximately **43.08%** of the follower base.
+
+This tool helps highlight the scale of inauthentic follow activity and offers visibility into community integrity.
+
