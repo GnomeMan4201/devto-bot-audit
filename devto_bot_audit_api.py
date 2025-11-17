@@ -221,3 +221,45 @@ if __name__ == "__main__":
 
     if args.summary:
         summarize_bot_stats()
+
+# --- CLI Entry Point ---
+if __name__ == "__main__":
+    import argparse
+    import os
+
+    def summarize_bot_stats():
+        import csv
+
+        try:
+            with open("devto_bot_audit_full.csv", "r") as f:
+                reader = csv.reader(f)
+                headers = next(reader)
+                total = 0
+                bots = 0
+                for row in reader:
+                    total += 1
+                    score = int(row[9])
+                    flag = row[10]
+                    if score >= 3 or "Suspicious username" in flag:
+                        bots += 1
+                percent = round((bots / total) * 100, 2)
+                print(f"\n📊 Summary: {bots} likely bots out of {total} total followers ({percent}%)\n")
+        except FileNotFoundError:
+            print("❌ Could not find devto_bot_audit_full.csv. Run the audit first with --api-key.")
+        except Exception as e:
+            print(f"❌ Error during summary: {e}")
+
+    parser = argparse.ArgumentParser(description="DEV.to Bot Audit Tool")
+    parser.add_argument('--api-key', help="Your DEV.to API key")
+    parser.add_argument('--summary', action='store_true', help="Print bot detection summary after audit")
+    args = parser.parse_args()
+
+    if args.api_key:
+        print("🔐 Starting bot audit using DEV.to API...")
+        os.environ["DEVTO_API_KEY"] = args.api_key
+        from devto_audit_core import run_audit
+        run_audit()
+        print("✅ Audit complete.")
+
+    if args.summary:
+        summarize_bot_stats()
