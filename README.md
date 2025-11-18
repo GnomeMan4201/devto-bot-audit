@@ -1,4 +1,10 @@
 #!/bin/bash
+![Python](https://img.shields.io/badge/python-3.10+-blue)
+
+![License](https://img.shields.io/badge/license-MIT-green)
+
+![Dev.to](https://img.shields.io/badge/dev.to-gnomeman4201-black?logo=dev.to)
+
 #
 # run_audit.sh - Complete workflow for DEV.to bot auditing
 
