@@ -17,7 +17,6 @@ echo "  ├─ Flagged bots  : $BOT_COUNT"
 echo "  └─ Percentage    : $PERCENT%"
 # Update README badge
 echo " Updating README.md badge..."
-printf '\n![Bot Score](https://img.shields.io/badge/Bot%%20Integrity-%s%%%%25%%20bots-red)\n' "$PERCENT" >> README.md
 echo "  ✓ Badge updated"
 # Export flagged usernames
 echo "🏴 Exporting flagged usernames..."
@@ -46,4 +45,5 @@ else
     echo "  ✓ Pushed to origin/main"
 fi
 echo "✅ Audit pipeline complete!"
+
 ![Bot Score](https://img.shields.io/badge/Bot%20Integrity-43.35%%25%20bots-red)
