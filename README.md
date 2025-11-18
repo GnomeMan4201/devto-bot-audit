@@ -111,4 +111,5 @@ This tool helps highlight the scale of inauthentic follow activity and offers vi
 
 
 
-![Bot Score](https://img.shields.io/badge/Bot%20Integrity-%%25%20bots-red)
+
+![Bot Score](https://img.shields.io/badge/Bot%20Integrity-43.35%%25%20bots-red)
