@@ -343,3 +343,21 @@ if __name__ == "__main__":
 
     if args.summary:
         summarize_bot_stats()
+
+def get_follower_count():
+    """Returns the expected number of followers from DEV dashboard HTML."""
+    from bs4 import BeautifulSoup
+    with open('Dashboard - DEV Community.html', 'r', encoding='utf-8') as f:
+        html = f.read()
+    soup = BeautifulSoup(html, 'html.parser')
+    follower_span = soup.find('span', string=lambda x: x and 'followers' in x.lower())
+    if follower_span:
+        try:
+            return int(''.join(filter(str.isdigit, follower_span.text)))
+        except ValueError:
+            return -1
+    return -1
+
+if __name__ == '__main__':
+    print(get_follower_count())
+

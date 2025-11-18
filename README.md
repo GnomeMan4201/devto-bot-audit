@@ -42,4 +42,4 @@ else
     }
     git push origin main
 fi
-![Bot Score](https://img.shields.io/badge/Bot%20Integrity-43.35%%25%20bots-red)
+![Bot Score](https://img.shields.io/badge/Bot%20Integrity-0%25%20bots-red)
