@@ -1,115 +1,66 @@
-#  devto-bot-audit
-![Python](https://img.shields.io/badge/python-3.10+-blue)
+#!/bin/bash
+#
+# run_audit.sh - Complete workflow for DEV.to bot auditing
+#
 
-![License](https://img.shields.io/badge/license-MIT-green)
+set -e
 
-![Dev.to](https://img.shields.io/badge/dev.to-gnomeman4201-black?logo=dev.to)
+echo " Starting DEV.to Bot Audit Pipeline..."
+echo ""
 
+# Run the Python audit
+python3 devto_audit_core.py
 
-> **An AI-augmented CLI tool for auditing suspicious Dev.to follower activity.**  
-Built by [@GnomeMan4201](https://dev.to/gnomeman4201) to surface patterns of automated engagement, filter out low-quality bots, and protect signal for legitimate developers and researchers.
+# Calculate bot score from CSV
+echo " Calculating bot statistics..."
+BOT_COUNT=$(awk -F',' 'NR>1 && ($10 ~ /Suspicious username/ || $9 >= 3) {count++} END {print count}' devto_bot_audit_full.csv)
+TOTAL_COUNT=$(($(wc -l < devto_bot_audit_full.csv) - 1))
+PERCENT=$(awk "BEGIN { printf \"%.2f\", ($BOT_COUNT/$TOTAL_COUNT)*100 }")
 
----
+echo "  ├─ Total accounts: $TOTAL_COUNT"
+echo "  ├─ Flagged bots  : $BOT_COUNT"
+echo "  └─ Percentage    : $PERCENT%"
+echo ""
 
-##  TL;DR
+# Update README badge
+echo " Updating README.md badge..."
+printf '\n![Bot Score](https://img.shields.io/badge/Bot%%20Integrity-%s%%%%25%%20bots-red)\n' "$PERCENT" >> README.md
+echo "  ✓ Badge updated"
+echo ""
 
-This CLI tool dynamically fetches **all followers** for a given Dev.to account and analyzes them using:
+# Export flagged usernames
+echo "🏴 Exporting flagged usernames..."
+awk -F',' 'NR>1 && ($10 ~ /Suspicious username/ || $9 >= 3) { print $1 }' devto_bot_audit_full.csv > flagged_usernames.txt
+FLAGGED_COUNT=$(wc -l < flagged_usernames.txt)
+echo "  ✓ Exported $FLAGGED_COUNT flagged usernames to flagged_usernames.txt"
+echo ""
 
--  **Heuristic scoring** (profile bio, post count, avatar, etc.)
--  **Optional AI analysis** (via GPT-4o, if you provide an API key)
--  CSV export for review, reporting, or Dev.to moderation
+# Git operations
+echo " Committing changes to git..."
+git add devto_audit_core.py devto_bot_audit_full.csv flagged_usernames.txt README.md
 
-No authentication, scraping libraries, or complex setup needed — just Python and a few dependencies.
+if git diff --cached --quiet; then
+    echo "  ℹ️  No changes to commit"
+else
+    git commit -m " Fix regex + restore audit flow + print bot summary + badge logic"
+    echo "  ✓ Changes committed"
+    
+    echo ""
+    echo "🔄 Pulling latest changes..."
+    git pull --rebase origin main || {
+        echo "⚠️  Rebase conflict - resolve manually and run:"
+        echo "    git rebase --continue"
+        echo "    git push origin main"
+        exit 1
+    }
+    
+    echo ""
+    echo "⬆️  Pushing to remote..."
+    git push origin main
+    echo "  ✓ Pushed to origin/main"
+fi
 
----
-
-##  Features
-
-- Scrapes **all pages** of your followers using Dev.to's HTML frontend
-- Flags:
-  - No bio / default avatar
-  - Suspicious usernames
-  - Follows many but has no followers
-  - Very recent account creation
-- Optional GPT-4o scoring for bot-likeness (e.g., “8/10 – looks like automated account creation”)
-- Outputs structured CSV with:
-  - Username, bio, join date, post count, avatar status
-  - Heuristic bot score + reasoning
-  - (Optional) AI score + justification
-
----
-
-##  Installation
-
-```bash
-git clone https://github.com/GnomeMan4201/devto-bot-audit.git
-cd devto-bot-audit
-pip install -r requirements.txt
-
----
-
-## Example Output
-
-After running:
-
-```bash
-python3 devto_bot_audit_api.py --api-key YOUR_API_KEY
-
-You'll get a CSV like this:
-username	profile_score	post_count	flags
-cooldev123	0.98	4	None
-user8976	0.02	0	No posts, no bio
-Contributing
-
-If you spot false positives or want to suggest features, open an issue or submit a PR. Community eyes help strengthen this project.
-Contact
-
-This tool was developed by GnomeMan4201
-
-.
-Initial concerns were shared privately with the Dev.to team before this public release.
-
-
----
-## Example Output
-
-After running:
-```bash
-python3 devto_bot_audit_api.py --api-key YOUR_API_KEY
-```
-
-You'll get a CSV like this:
-```
-username        profile_score   post_count      flags
-cooldev123      0.98            4               None
-user8976        0.02            0               No posts, no bio
-```
-
-## Contributing
-
-If you spot false positives or want to suggest features, open an issue or submit a PR. Community eyes help strengthen this project.
-
-## Contact
-
-This tool was developed by **GnomeMan4201**.
-
-Initial concerns were shared privately with the Dev.to team before this public release.
-
----
-
-## Bot Detection Summary
-
-From a sample of **260** followers, **112** were flagged as likely bots based on multiple heuristics:
-- Suspicious usernames
-- Heuristic score ≥ 3 (multiple weak signals combined)
-
-That’s approximately **43.08%** of the follower base.
-
-This tool helps highlight the scale of inauthentic follow activity and offers visibility into community integrity.
-
-
-
-
-
+echo ""
+echo "✅ Audit pipeline complete!"
 
 ![Bot Score](https://img.shields.io/badge/Bot%20Integrity-43.35%%25%20bots-red)
