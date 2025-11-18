@@ -41,4 +41,5 @@ else
 fi
 
 
+
 ![Bot Score](https://img.shields.io/badge/Bot%20Integrity-43.35%%25%20bots-red)
