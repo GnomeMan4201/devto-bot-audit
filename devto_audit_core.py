@@ -80,7 +80,7 @@ def run_audit():
         row = score_account(username)
         results.append(row)
 
-    with open(tmp_csv_path, "r") as f:
+    with open("devto_bot_audit_full.csv", "r") as f:
         reader = csv.reader(f)
         next(reader)
         results = list(reader)
