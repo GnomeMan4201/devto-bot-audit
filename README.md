@@ -1,4 +1,6 @@
 # devto-bot-audit
+[![CI](https://github.com/GnomeMan4201/devto-bot-audit/actions/workflows/ci.yml/badge.svg)](https://github.com/GnomeMan4201/devto-bot-audit/actions/workflows/ci.yml)
+
 
 **Automated bot detection and community authenticity analysis for DEV.to.**
 
