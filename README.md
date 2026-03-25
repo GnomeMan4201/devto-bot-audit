@@ -50,3 +50,30 @@ python3 devto_audit_core.py
 ---
 
 *devto-bot-audit // badBANANA research // GnomeMan4201*
+
+---
+
+## Sample Output
+```
+🔍 DEV.to Bot Audit Report: 43.08% Likely Bots
+
+Audited 260 followers — 112 accounts (43.08%) flagged as likely bots.
+
+HEURISTICS
+  ✗ No bio
+  ✗ No posts
+  ✗ Suspicious username pattern (high-entropy / default)
+  ✗ Heuristic score ≥ 3
+
+RESULTS
+  Total Followers : 260
+  Likely Bots     : 112
+  Bot Rate        : 43.08%
+
+SAMPLE FLAGGED
+  _07539bcc4c62f7fb654f
+  __38872adbefc
+  _eb9bd59fc267acb3d322e
+  abdisamed_abdi_6c6cfabe1f
+  abhijeet_mukherjee_fd304d
+```

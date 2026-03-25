@@ -33,11 +33,13 @@ def fetch_user_profile(username):
     return {}
 
 def score_account(username):
+    if not username:
+        return {"username": None, "score": 0, "notes": "no username"}
     profile = fetch_user_profile(username)
     score = 0
     notes = []
 
-    if re.match(r"^[_\\-0-9a-f]{6,}$", username):
+    if re.match(r"^[_\-0-9a-f]{6,}$", username):
         score += 1
         notes.append("Suspicious username")
 
@@ -75,7 +77,7 @@ def run_audit():
     followers = fetch_followers()
     results = []
     for i, f in enumerate(followers, 1):
-        username = f.get("user_name")
+        username = f.get("username")
         print(f"[{i}/{len(followers)}] Fetching {username}")
         row = score_account(username)
         results.append(row)
@@ -99,3 +101,6 @@ def run_audit():
         writer.writerows(results)
 
     print("✅ DONE. Output saved to devto_bot_audit_full.csv")
+
+if __name__ == '__main__':
+    run_audit()
