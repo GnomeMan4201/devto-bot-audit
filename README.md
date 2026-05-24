@@ -79,3 +79,5 @@ SAMPLE FLAGGED
   abdisamed_abdi_6c6cfabe1f
   abhijeet_mukherjee_fd304d
 ```
+
+![Bot Score](https://img.shields.io/badge/Bot%20Integrity-0%25%20bots-red)

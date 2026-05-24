@@ -1,0 +1,36 @@
+UPVOTE.CLUB CHROME EXTENSION ANALYSIS
+Extension ID: fkiaohmeeoiipoknngcppjbkinaamnof
+Version: 1.1.26
+Published as: "Helper App" (not "Upvote.club")
+
+PERMISSIONS (beyond task verification):
+- <all_urls> — reads all websites
+- webRequest + requestBody — intercepts and reads POST bodies across 30+ platforms
+- tabs — tracks all open tabs and URLs
+- scripting — injects code into any page
+- storage — persistent local data
+- sidePanel — persistent sidebar UI
+- captureVisibleTab — takes screenshots of active browser window
+
+DATA COLLECTED:
+- Screenshots of active tab uploaded to api.upvote.club
+- Full page text extracted and uploaded with screenshots
+- Raw POST body of social media API requests (reactions, follows, comments)
+- Auth tokens read from localStorage on upvote.club tabs
+- All tab URLs and navigation events
+- Google redirect URL parameters
+
+SHADOW DOMAIN:
+- nsboost.xyz — separate white-label deployment
+- IP: 216.150.16.129 (different from upvote.club)
+- Contains Yandex Metrica tracking pixel (mc.yandex.ru/watch/98568698)
+- Same extension handles both domains transparently
+
+HARDCODED SECRET:
+- EXTENSION_SCREENSHOT_UPLOAD_SECRET exposed in source
+- Used to authenticate screenshot uploads
+
+EXTENSION NAME OBFUSCATION:
+- Chrome Web Store listing: "Helper App"
+- Description: "Just Helper App"
+- No mention of upvote.club in extension name

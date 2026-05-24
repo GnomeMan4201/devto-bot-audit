@@ -1,47 +1,29 @@
-# 🔍 DEV.to Bot Audit Report: 43.08% Likely Bots
+# DEV.to Bot Audit Report
+**Generated:** 2026-05-24 00:14
 
-After auditing 260 of my DEV.to followers using a custom-built heuristic scoring system, I found that **112 accounts** (43.08%) are **likely bots**.
+## Summary
 
----
+| Metric | Value |
+|---|---|
+| Total followers audited | 1409 |
+| Flagged as bots (score ≥ 2) | 899 (63.8%) |
+| Suspicious (score 1-2) | 510 (36.2%) |
+| Likely real | 0 (0.0%) |
+| Zero posts + no bio | 898 |
+| Default/no avatar | 0 |
 
-## ⚠️ Detection Heuristics
+## Account Creation Clustering
 
-Accounts were flagged based on:
-- ❌ No bio
-- ❌ No posts
-- 🧪 Suspicious usernames (e.g., high-entropy strings or default patterns)
-- 🧮 Heuristic Score ≥ 3
+Accounts created on the same dates (bot batch indicator):
 
----
+- `May 14, 20`: 194 accounts
+- `May 13, 20`: 168 accounts
+- `May 18, 20`: 133 accounts
+- `May 19, 20`: 120 accounts
+- `Nov 17, 20`: 84 accounts
 
-## 📊 Breakdown
+## Notes
 
-| Total Followers | Likely Bots | % Likely Bots |
-|------------------|-------------|----------------|
-| 260              | 112         | 43.08%         |
-
----
-
-## ✅ Sample Flagged Accounts
-
-```
-_07539bcc4c62f7fb654f
-__38872adbefc
-_eb9bd59fc267acb3d322e
-abdisamed_abdi_6c6cfabe1f
-abhijeet_mukherjee_fd304d
-abolfazl_masoumi_1e61b883
-adham_abozeid_8882eb1fb7a
-ahmed_some_6d9e0be8c49eea
-aksh_modi_687d3e47a47d387
-aktarul_gazi_6a98136573c1
-```
-
----
-
-## 🛠️ Tools Used
-
-This audit was conducted using my open-source CLI:
-[🔗 devto-bot-audit](https://github.com/GnomeMan4201/devto-bot-audit)
-
-> Built by a security researcher who’s seen the inside of enough botnets to know what fake looks like.
+Follower count spiked from ~600 to 1,393 in a matter of days.
+GitHub follower count does not reflect this spike, suggesting artificial inflation.
+Flagged accounts exhibit: auto-generated usernames, zero post/comment activity, default avatars, and no bio.
