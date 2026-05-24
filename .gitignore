@@ -6,3 +6,9 @@ __pycache__/
 .env
 *.log
 .DS_Store
+devto_bot_audit_full.csv
+real_followers.csv
+avatar_cache/
+*.bak.*
+extended_run.log
+november_api_run.log
